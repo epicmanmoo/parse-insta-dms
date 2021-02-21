@@ -4,7 +4,7 @@ import tkinter as tk
 import datetime
 
 
-class MultipleScrollingListbox(tk.Tk):
+class DisplayMessages(tk.Tk):
 
     def __init__(self, _msgs, _p1, _p2):
         tk.Tk.__init__(self)
@@ -154,6 +154,6 @@ all_msgs_as_json = get_all_msgs_as_json(paths)
 for msgs in range(len(all_msgs_as_json)):
     p1 = all_msgs_as_json[msgs][0][0]['name']
     p2 = all_msgs_as_json[msgs][0][1]['name']
-    root = MultipleScrollingListbox(all_msgs_as_json[msgs][1], p1, p2)
+    root = DisplayMessages(all_msgs_as_json[msgs][1], p1, p2)
     root.state('zoomed')
     root.mainloop()
