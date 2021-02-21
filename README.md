@@ -1,3 +1,5 @@
-# parse-insta-dms
+# Parses old Instagram DMs and displays them using tkinter
 
-# Stuff
+![Picture](https://i.ibb.co/7WmxLJQ/t.png) 
+
+### More stuff
