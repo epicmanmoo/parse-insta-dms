@@ -44,7 +44,7 @@ class DisplayMessages(tk.Tk):
                 p1_timestamp_time_final = p1_timestamp_time_final.strftime('%I:%M:%S %p')
                 p1_datetime_final = p1_timestamp_date_final + " (" + p1_timestamp_time_final + ")"
                 self.participant1.insert(tk.END, p1_cur_msg['content'])
-                self.info1.insert(tk.END, str(self._p1)[0:5] + "... on " + p1_datetime_final)
+                self.info1.insert(tk.END, str(self._p1)[0:3] + "... on " + p1_datetime_final)
                 line += 1
                 num_spaces += 1
             for i in range(num_spaces):
@@ -64,7 +64,7 @@ class DisplayMessages(tk.Tk):
                 p2_timestamp_time_final = p2_timestamp_time_final.strftime('%I:%M:%S %p')
                 p2_datetime_final = p2_timestamp_date_final + " (" + p2_timestamp_time_final + ")"
                 self.participant2.insert(tk.END, p2_cur_msg['content'])
-                self.info2.insert(tk.END, str(self._p2)[0:5] + "... on " + p2_datetime_final)
+                self.info2.insert(tk.END, str(self._p2)[0:3] + "... on " + p2_datetime_final)
                 line += 1
                 num_spaces += 1
             for i in range(num_spaces):
@@ -156,4 +156,5 @@ for msgs in range(len(all_msgs_as_json)):
     p2 = all_msgs_as_json[msgs][0][1]['name']
     root = DisplayMessages(all_msgs_as_json[msgs][1], p1, p2)
     root.state('zoomed')
+    root.title("Messages " + str(msgs + 1))
     root.mainloop()
