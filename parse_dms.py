@@ -19,25 +19,22 @@ class MultipleScrollingListbox(tk.Tk):
 
         line = 0
         while line < len(_first):
-            try:
-                if _first[line]['sender_name'] == _p1:
-                    num_spaces = 0
-                    while _first[line]['sender_name'] == _p1:
-                        self.list1.insert(tk.END, _first[line]['content'])
-                        line += 1
-                        num_spaces += 1
-                    for i in range(num_spaces):
-                        self.list2.insert(tk.END, '')
-                elif _first[line]['sender_name'] == _p2:
-                    num_spaces = 0
-                    while _first[line]['sender_name'] == _p2:
-                        self.list2.insert(tk.END, _first[line]['content'])
-                        line += 1
-                        num_spaces += 1
-                    for i in range(num_spaces):
-                        self.list1.insert(tk.END, '')
-            except IndexError:
-                break
+            if _first[line]['sender_name'] == _p1:
+                num_spaces = 0
+                while line < len(_first) and _first[line]['sender_name'] == _p1:
+                    self.list1.insert(tk.END, _first[line]['content'])
+                    line += 1
+                    num_spaces += 1
+                for i in range(num_spaces):
+                    self.list2.insert(tk.END, '')
+            elif _first[line]['sender_name'] == _p2:
+                num_spaces = 0
+                while line < len(_first) and _first[line]['sender_name'] == _p2:
+                    self.list2.insert(tk.END, _first[line]['content'])
+                    line += 1
+                    num_spaces += 1
+                for i in range(num_spaces):
+                    self.list1.insert(tk.END, '')
 
     def y_scroll_1(self, *args):  # for this method and below 2 methods: https://stackoverflow.com/questions/4066974/scrolling-multiple-tkinter-listboxes-together
         if self.list2.yview() != self.list1.yview():
@@ -66,9 +63,6 @@ def gather_paths():
             if file_ext == '.json':
                 json_files.append(file_name)
         break
-
-    if base_dir == '':
-        return []
 
     json_files_path = []
 
@@ -110,6 +104,5 @@ first = all_msgs_as_json[0][1]
 participants = all_msgs_as_json[0][0]
 p1 = participants[0]['name']
 p2 = participants[1]['name']
-
 root = MultipleScrollingListbox(first, p1, p2)
 root.mainloop()
